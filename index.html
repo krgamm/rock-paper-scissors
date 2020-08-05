@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let playerPts = 0;
+      let computerPts = 0;
+      function computerPlay() {
+        let choices = ["Rock", "Paper", "Scissors"];
+        return choices[Math.floor(Math.random() * choices.length)];
+      }
+
+      function playerSelection() {
+        let playerInput = prompt("Choose Rock, Paper, or Scissors:");
+        playerInput =
+          playerInput.charAt(0).toUpperCase() + playerInput.slice(1);
+
+        if (
+          playerInput === "Rock" ||
+          playerInput === "Paper" ||
+          playerInput === "Scissors"
+        ) {
+          return playerInput;
+        } else {
+          return playerSelection();
+        }
+      }
+
+      function playRound(playerSelection, computerSelection) {
+        if (computerSelection === playerSelection) {
+          alert("It's a tie!");
+        }
+        if (playerSelection === "Rock") {
+          if (computerSelection === "Paper") {
+            alert(
+              "You lose! " +
+                computerSelection +
+                " beats " +
+                playerSelection +
+                "."
+            );
+            computerPts = computerPts + 1;
+          } else if (computerSelection === "Scissors") {
+            alert(
+              "You win! " +
+                playerSelection +
+                " beats " +
+                computerSelection +
+                "."
+            );
+            playerPts = playerPts + 1;
+          }
+        }
+        if (playerSelection === "Paper") {
+          if (computerSelection === "Scissors") {
+            alert(
+              "You lose! " +
+                computerSelection +
+                " beats " +
+                playerSelection +
+                "."
+            );
+            computerPts = computerPts + 1;
+          } else if (computerSelection === "Rock") {
+            alert(
+              "You win! " +
+                playerSelection +
+                " beats " +
+                computerSelection +
+                "."
+            );
+            playerPts = playerPts + 1;
+          }
+        }
+        if (playerSelection === "Scissors") {
+          if (computerSelection === "Rock") {
+            alert(
+              "You lose! " +
+                computerSelection +
+                " beats " +
+                playerSelection +
+                "."
+            );
+            computerPts = computerPts + 1;
+          } else if (computerSelection === "Paper") {
+            alert(
+              "You win! " +
+                playerSelection +
+                " beats " +
+                computerSelection +
+                "."
+            );
+            playerPts = playerPts + 1;
+          }
+        }
+      }
+
+      function game() {
+        let rounds = 0;
+
+        while (rounds < 5) {
+          playRound(playerSelection(), computerPlay());
+
+          rounds = rounds + 1;
+        }
+      }
+      //   let player = playerSelection();
+      //   let computer = computerPlay();
+      //   console.log("Computer: " + computer);
+      //   console.log("Player: " + player);
+      game();
+      if (playerPts > computerPts) {
+        alert("YOU WIN " + playerPts + " to " + computerPts);
+      } else {
+        alert("you lose " + playerPts + " to " + computerPts);
+      }
+    </script>
+  </body>
+</html>
